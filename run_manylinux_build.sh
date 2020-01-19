@@ -43,7 +43,7 @@ MB_PYTHON_TAG=cp27-cp27m ./run_manylinux_build.sh
 """
 
 
-DOCKER_IMAGE=${DOCKER_IMAGE:="quay.io/pypa/manylinux2010_x86_64"}
+#DOCKER_IMAGE=${DOCKER_IMAGE:="quay.io/pypa/manylinux2010_x86_64"}
 DOCKER_IMAGE=${DOCKER_IMAGE:="soumith/manylinux-cuda100"}
 #PARENT_USER=${PARENT_USER:="$USER"}
 
