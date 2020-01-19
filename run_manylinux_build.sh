@@ -43,8 +43,8 @@ MB_PYTHON_TAG=cp27-cp27m ./run_manylinux_build.sh
 """
 
 
-#DOCKER_IMAGE=${DOCKER_IMAGE:="soumith/manylinux-cuda100"}
 DOCKER_IMAGE=${DOCKER_IMAGE:="quay.io/pypa/manylinux2010_x86_64"}
+DOCKER_IMAGE=${DOCKER_IMAGE:="soumith/manylinux-cuda100"}
 #PARENT_USER=${PARENT_USER:="$USER"}
 
 # Valid multibuild python versions are:
@@ -80,10 +80,14 @@ set -x
 set -e
 
 
+cd /io/
+
 # Define multibuild workdir where we will try to store all temporary files
 MB_WORKDIR=mb_work
 mkdir -p $MB_WORKDIR
 chmod -R o+rw $MB_WORKDIR
+
+yum install ncurses-devel
 
 
 PYPREFIX=/opt/python/$MB_PYTHON_TAG
@@ -100,17 +104,18 @@ chmod -R o+rw $VENV_DIR
 #setfacl -d -m g::rwx $VENV_DIR
 #setfacl -d -m o::rwx $VENV_DIR
 
-set +x
+#set +x
 echo "activate virtualenv"
 source $VENV_DIR/bin/activate
 echo "activated virtualenv"
-set -x
+#set -x
 
 export PIP_CACHE_DIR="$MB_WORKDIR/cache_pip"
 
 pip install pip -U
 pip install pip setuptools -U
 pip install pip scikit-build -U
+pip install cmake -U
 
 #pip install -r requirements.txt
 # we only need build requirements to make the wheel

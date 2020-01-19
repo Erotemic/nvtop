@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Update Requirments:
-    # Requirements are broken down by type in the `requirements` folder, and
-    # `requirments.txt` lists them all. Thus we autogenerate via:
-
-    cat requirements/*.txt | sort -u | grep -o '^[^#]*' >  requirements.txt
+While nvtop is not a Python repo, we are using pip to allow for a distribution
+method that does not require root.
 """
 from setuptools import find_packages
 from skbuild import setup
